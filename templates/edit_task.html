@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Editar Tarefa</h1>
+    <form method="post">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" value="{{ task.title }}" required>
+
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required>{{ task.description }}</textarea>
+
+        <label for="due_date">Data de Vencimento:</label>
+        <input type="date" id="due_date" name="due_date" value="{{ task.due_date }}" required>
+
+        <label for="priority">Prioridade:</label>
+        <select id="priority" name="priority" required>
+            <option value="Baixa" {% if task.priority == 'Baixa' %}selected{% endif %}>Baixa</option>
+            <option value="Média" {% if task.priority == 'Média' %}selected{% endif %}>Média</option>
+            <option value="Alta" {% if task.priority == 'Alta' %}selected{% endif %}>Alta</option>
+        </select>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    <a href="{{ url_for('index') }}">Voltar para a Lista</a>
+</body>
+</html>

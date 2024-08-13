@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas Concluídas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Tarefas Concluídas</h1>
+    <a href="{{ url_for('index') }}">Voltar para a Lista de Tarefas</a>
+    <div class="task-list">
+        {% for task in tasks %}
+            <div class="task-card" style="background-color: {{ task.color }};">
+                <h2>{{ task.title }}</h2>
+                <p>{{ task.description }}</p>
+                <p>Data de Vencimento: {{ task.due_date }}</p>
+                <p>Prioridade: {{ task.priority }}</p>
+                <p>Status: Concluída</p>
+            </div>
+        {% else %}
+            <p>Nenhuma tarefa concluída encontrada.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
